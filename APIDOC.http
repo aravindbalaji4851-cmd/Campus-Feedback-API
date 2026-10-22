@@ -1,0 +1,74 @@
+# AUTHENTICATION APIS =======================
+
+# api call for user registering
+###
+POST http://127.0.0.1:8000/campus_feedback/signup/
+Content-Type: application/json 
+
+{
+    "username":"user2",
+    "email":"user2@gmail.com",
+    "password":"user2@123"
+}
+
+# api call for token generation for user
+###
+POST http://127.0.0.1:8000/campus_feedback/signin/
+Content-Type: application/json
+
+{
+    "username":"user2",
+    "password":"user2@123"
+}
+
+# FEEDBACK API CALLS ===================================
+
+# api call for listing all feedbacks
+###
+GET http://127.0.0.1:8000/campus_feedback/feedbacks/ 
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for creating feedbacks
+###
+POST http://127.0.0.1:8000/campus_feedback/feedbacks/ 
+Content-Type: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+{
+    "department": "ce",
+    "feedback_text": "The college administration should improve the drinking water facilities and maintain clean washrooms across the campus. Several classrooms also need better ventilation and proper maintenance.",
+    "sentiment": "negative",
+    "category": "facilities"
+}
+
+# api call for retrieving specific feedback
+###
+GET http://127.0.0.1:8000/campus_feedback/feedbacks/4/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for updating feedback
+###
+PUT http://127.0.0.1:8000/campus_feedback/feedbacks/4/
+Content-Type: application/json 
+Authorization: Token YOUR_TOKEN_HERE
+
+{
+    "department": "cse",
+    "feedback_text": "The college administration should improve the drinking water facilities and maintain clean washrooms across the campus.",
+    "sentiment": "negative",
+    "category": "facilities"
+}
+
+# api call for deleting feedback 
+###
+DELETE http://127.0.0.1:8000/campus_feedback/feedbacks/1/
+Accept: application/json 
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for summary group by sentiment and category
+###
+GET http://127.0.0.1:8000/campus_feedback/summary/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
